@@ -30,7 +30,7 @@ candidates = ["John",
 to_select = 10
 pool = 25
 result = []
-for i in range (0, to_select - 1):
+for i in range (0, to_select):
     m = hashlib.md5()
     pre = struct.pack('>H', i)
     m.update(pre)
@@ -39,9 +39,8 @@ for i in range (0, to_select - 1):
 
     hex = m.hexdigest()
     inter = int("0x"+hex, 0)
-    print inter
     selected = inter % (pool - i)
-    print selected
     result.append(candidates[selected])    
+    candidates.pop(selected) 
 
 print result
